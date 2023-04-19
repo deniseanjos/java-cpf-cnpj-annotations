@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.javaannotations.cpfcnpj.model.Persona;
 import com.javaannotations.cpfcnpj.repository.PersonaRepository;
 import com.javaannotations.cpfcnpj.service.exceptions.DocumentoInvalidoException;
+import com.javaannotations.cpfcnpj.service.impl.PersonaServiceImpl;
 import com.javaannotations.cpfcnpj.service.utils.CNPJUtils;
 import com.javaannotations.cpfcnpj.service.utils.CPFUtils;
 import com.javaannotations.cpfcnpj.service.utils.StringUtils;
@@ -28,7 +29,7 @@ import com.javaannotations.cpfcnpj.service.utils.StringUtils;
 class PersonaServiceTest {
 
 	@Autowired
-	PersonaService service;
+	PersonaServiceImpl service;
 
 	@Mock
 	PersonaRepository repository;
@@ -47,7 +48,7 @@ class PersonaServiceTest {
 
 	@BeforeEach
 	void setup() {
-		this.service = new PersonaService(repository, cpfUtils, cnpjUtils, stringUtils);
+		this.service = new PersonaServiceImpl(repository, cpfUtils, cnpjUtils, stringUtils);
 	}
 
 	@Test

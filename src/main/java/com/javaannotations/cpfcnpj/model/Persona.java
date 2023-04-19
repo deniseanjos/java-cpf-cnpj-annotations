@@ -28,11 +28,11 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@CPF(message = "CPF informado invalido.")
+	@CPF(message = "@CPF informado invalido.")
 	@Valid
 	private String cpf;
 	
-	@CNPJ(message = "CNPJ informado invalido.")
+	@CNPJ(message = "@CNPJ informado invalido.")
 	@Valid
 	private String cnpj;
 

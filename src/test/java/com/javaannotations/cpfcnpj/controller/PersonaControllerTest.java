@@ -231,7 +231,7 @@ class PersonaControllerTest {
 			    .andExpect(MockMvcResultMatchers.status().is(400))
 			    .andReturn();
 		
-		assertTrue(result.getResolvedException().getMessage().contains("CPF nao deve conter digitos repetidos"));
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
 		verifyNoInteractions(service);
 		
 		// teste cenario passando CPF invalido com numeros repetidos
@@ -243,10 +243,105 @@ class PersonaControllerTest {
 			    .andExpect(MockMvcResultMatchers.status().is(400))
 			    .andReturn();
 		
-		assertTrue(result.getResolvedException().getMessage().contains("CPF nao deve conter digitos repetidos"));
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
 		verifyNoInteractions(service);
 		
 		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("22222222222").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("33333333333").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("44444444444").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("55555555555").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("66666666666").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("77777777777").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("88888888888").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CPF invalido com numeros repetidos
+		persona = Persona.builder().documento("99999999999").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+		
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian individual taxpayer registry number (CPF)"));
+		verifyNoInteractions(service);
+				
+		// teste cenario passando CNPJ invalido com numeros repetidos
 		persona = Persona.builder().documento("00000000000000").build();
 		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
 				.content(convertObjectToJsonString(persona))
@@ -255,10 +350,10 @@ class PersonaControllerTest {
 			    .andExpect(MockMvcResultMatchers.status().is(400))
 			    .andReturn();
 				
-		assertTrue(result.getResolvedException().getMessage().contains("CNPJ nao deve conter digitos repetidos"));
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
 		verifyNoInteractions(service);
 		
-		// teste cenario passando CPF invalido com numeros repetidos
+		// teste cenario passando CNPJ invalido com numeros repetidos
 		persona = Persona.builder().documento("11111111111111").build();
 		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
 				.content(convertObjectToJsonString(persona))
@@ -267,7 +362,115 @@ class PersonaControllerTest {
 			    .andExpect(MockMvcResultMatchers.status().is(400))
 			    .andReturn();
 				
-		assertTrue(result.getResolvedException().getMessage().contains("CNPJ nao deve conter digitos repetidos"));
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("22222222222222").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);	
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("33333333333333").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("44444444444444").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("555555555555").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("66666666666666").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);	
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("77777777777777").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("88888888888888").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("99999999999999").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
+		verifyNoInteractions(service);
+		
+		// teste cenario passando CNPJ invalido com numeros repetidos
+		persona = Persona.builder().documento("14572457000188").build();
+		result = mvc.perform(MockMvcRequestBuilders.post("/doc-validator")
+				.content(convertObjectToJsonString(persona))
+			    .contentType(MediaType.APPLICATION_JSON)
+			    .accept(MediaType.APPLICATION_JSON))
+			    .andExpect(MockMvcResultMatchers.status().is(400))
+			    .andReturn();
+				
+		assertTrue(result.getResolvedException().getMessage().contains("invalid Brazilian corporate taxpayer registry number (CNPJ)"));
 		verifyNoInteractions(service);
 	}
 	

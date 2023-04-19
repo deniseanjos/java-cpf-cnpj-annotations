@@ -72,7 +72,7 @@ class PersonaServiceTest {
 		assertEquals("99877404000125", personaResponse.getCnpj());
 		assertEquals("43052288318", personaResponse.getCpf());
 	}
-
+	
 	@Test
 	@DisplayName("Caso sucesso documentos com pontuacao")
 	void testeEsperaSucessoAoIncluirNovaPersonaComDocumentosValidosComPontuacao() {
@@ -146,6 +146,18 @@ class PersonaServiceTest {
 		var responseThrows4 = assertThrows(DocumentoInvalidoException.class, () -> service.salvar(persona4));
 
 		assertEquals("O documento informado nao e valido.", responseThrows4.getMessage());
+		
+		// documento invalido - calculo CNPJ invalido
+		Persona persona5 = Persona.builder().cpf("43052288318").cnpj("14572457000188").build();
+
+		when(stringUtils.removeCaracteresEspeciais(persona5.getCnpj())).thenCallRealMethod();
+		when(stringUtils.removeCaracteresEspeciais(persona5.getCpf())).thenCallRealMethod();
+		when(cnpjUtils.isCNPJ(anyString())).thenCallRealMethod();
+		when(cpfUtils.isCPF(anyString())).thenCallRealMethod();
+
+		var responseThrows5 = assertThrows(DocumentoInvalidoException.class, () -> service.salvar(persona5));
+
+		assertEquals("O documento informado nao e valido.", responseThrows5.getMessage());
 
 	}
 
